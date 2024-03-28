@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { routes } = require('./routes');
+const { port } = require('./database/config');
 
 const server = express();
 
@@ -11,7 +12,8 @@ server.use(express.json());
 server.use(cors());
 server.use(routes);
 
-const PORT = 8080;
-server.listen(PORT, () => {
-    console.log(`API iniciada: http://localhost:${PORT}`);
+const Porta = 8080;
+
+server.listen({port: process.env.PORT ?? Porta}, () => {
+    console.log(`API iniciada: http://localhost:${Porta}`);
 });
